@@ -1,6 +1,6 @@
 package eu.creativeone.poc.repository;
 
-import eu.creativeone.poc.domain.Authority;
+import eu.creativeone.poc.tenancy.domain.Authority;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

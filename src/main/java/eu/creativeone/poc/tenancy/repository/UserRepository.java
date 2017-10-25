@@ -1,6 +1,6 @@
-package eu.creativeone.poc.repository;
+package eu.creativeone.poc.tenancy.repository;
 
-import eu.creativeone.poc.domain.User;
+import eu.creativeone.poc.tenancy.domain.User;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

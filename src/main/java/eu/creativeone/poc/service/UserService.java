@@ -1,10 +1,10 @@
 package eu.creativeone.poc.service;
 
-import eu.creativeone.poc.domain.Authority;
-import eu.creativeone.poc.domain.User;
+import eu.creativeone.poc.tenancy.domain.Authority;
+import eu.creativeone.poc.tenancy.domain.User;
 import eu.creativeone.poc.repository.AuthorityRepository;
 import eu.creativeone.poc.config.Constants;
-import eu.creativeone.poc.repository.UserRepository;
+import eu.creativeone.poc.tenancy.repository.UserRepository;
 import eu.creativeone.poc.security.AuthoritiesConstants;
 import eu.creativeone.poc.security.SecurityUtils;
 import eu.creativeone.poc.service.util.RandomUtil;

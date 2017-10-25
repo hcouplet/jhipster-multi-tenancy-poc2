@@ -2,8 +2,8 @@ package eu.creativeone.poc.service;
 
 import eu.creativeone.poc.JhipsterApp;
 import eu.creativeone.poc.config.Constants;
-import eu.creativeone.poc.domain.User;
-import eu.creativeone.poc.repository.UserRepository;
+import eu.creativeone.poc.tenancy.domain.User;
+import eu.creativeone.poc.tenancy.repository.UserRepository;
 import eu.creativeone.poc.service.dto.UserDTO;
 import eu.creativeone.poc.service.util.RandomUtil;
 

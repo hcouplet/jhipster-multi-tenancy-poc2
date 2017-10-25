@@ -1,8 +1,8 @@
 package eu.creativeone.poc.web.rest;
 
 import eu.creativeone.poc.JhipsterApp;
-import eu.creativeone.poc.domain.User;
-import eu.creativeone.poc.repository.UserRepository;
+import eu.creativeone.poc.tenancy.domain.User;
+import eu.creativeone.poc.tenancy.repository.UserRepository;
 import eu.creativeone.poc.security.jwt.TokenProvider;
 import eu.creativeone.poc.web.rest.vm.LoginVM;
 import org.junit.Before;

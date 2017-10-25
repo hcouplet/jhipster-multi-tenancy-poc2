@@ -1,8 +1,9 @@
-package eu.creativeone.poc.domain;
+package eu.creativeone.poc.tenancy.domain;
 
 import eu.creativeone.poc.config.Constants;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import eu.creativeone.poc.domain.AbstractAuditingEntity;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
@@ -83,6 +84,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @Column(name = "reset_date")
     private Instant resetDate = null;
+
+    @Column(name = "tentant_id")
+    private String tentantId;
 
     @JsonIgnore
     @ManyToMany
@@ -197,6 +201,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public String getTentantId() {
+        return tentantId;
+    }
+
+    public void setTentantId(String tentantId) {
+        this.tentantId = tentantId;
     }
 
     @Override

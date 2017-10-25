@@ -1,6 +1,6 @@
 package eu.creativeone.poc.service;
 
-import eu.creativeone.poc.domain.User;
+import eu.creativeone.poc.tenancy.domain.User;
 
 import io.github.jhipster.config.JHipsterProperties;
 

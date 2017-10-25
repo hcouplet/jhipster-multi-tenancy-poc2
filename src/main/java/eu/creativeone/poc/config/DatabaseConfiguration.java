@@ -3,6 +3,7 @@ package eu.creativeone.poc.config;
 import io.github.jhipster.config.JHipsterConstants;
 import io.github.jhipster.config.liquibase.AsyncSpringLiquibase;
 
+import liquibase.integration.spring.MultiTenantSpringLiquibase;
 import liquibase.integration.spring.SpringLiquibase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 @Configuration
 @EnableJpaRepositories("eu.creativeone.poc.repository")
@@ -50,5 +55,35 @@ public class DatabaseConfiguration {
             log.debug("Configuring Liquibase");
         }
         return liquibase;
+    }
+
+    @Bean
+    public MultiTenantSpringLiquibase liquibaseMt(DataSource dataSource) throws SQLException
+    {
+        MultiTenantSpringLiquibase multiTenantSpringLiquibase = new MultiTenantSpringLiquibase();
+        multiTenantSpringLiquibase.setDataSource(dataSource);
+
+        Statement stmt = null;
+        stmt = dataSource.getConnection().createStatement();
+
+        ResultSet rs = stmt.executeQuery("SELECT tu.tentant_id FROM jhi_user tu WHERE tu.tentant_id IS NOT NULL");
+        ArrayList<String> schemas = new ArrayList<>();
+        while(rs.next()) {
+            String schemaName = rs.getString("tentant_id");
+            dataSource.getConnection().createStatement().executeUpdate("CREATE DATABASE IF NOT EXISTS "+schemaName);
+            schemas.add(schemaName);
+        }
+
+        multiTenantSpringLiquibase.setSchemas(schemas);
+        multiTenantSpringLiquibase.setChangeLog("classpath:config/liquibase/mt_master.xml");
+        multiTenantSpringLiquibase.setContexts("development, production");
+        if (env.acceptsProfiles(JHipsterConstants.SPRING_PROFILE_NO_LIQUIBASE)) {
+            multiTenantSpringLiquibase.setShouldRun(false);
+        } else {
+            multiTenantSpringLiquibase.setShouldRun(true);
+            log.debug("Configuring Liquibase");
+        }
+
+        return multiTenantSpringLiquibase;
     }
 }

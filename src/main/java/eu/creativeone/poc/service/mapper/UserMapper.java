@@ -1,7 +1,7 @@
 package eu.creativeone.poc.service.mapper;
 
-import eu.creativeone.poc.domain.Authority;
-import eu.creativeone.poc.domain.User;
+import eu.creativeone.poc.tenancy.domain.Authority;
+import eu.creativeone.poc.tenancy.domain.User;
 import eu.creativeone.poc.service.dto.UserDTO;
 
 import org.springframework.stereotype.Service;

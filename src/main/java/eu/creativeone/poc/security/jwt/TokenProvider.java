@@ -1,5 +1,6 @@
 package eu.creativeone.poc.security.jwt;
 
+import eu.creativeone.poc.tenancy.user.TenantUser;
 import io.github.jhipster.config.JHipsterProperties;
 
 import java.util.*;
@@ -23,6 +24,7 @@ public class TokenProvider {
     private final Logger log = LoggerFactory.getLogger(TokenProvider.class);
 
     private static final String AUTHORITIES_KEY = "auth";
+    private static final String TENTANTID_KEY = "tentantId";
 
     private String secretKey;
 
@@ -60,9 +62,16 @@ public class TokenProvider {
             validity = new Date(now + this.tokenValidityInMilliseconds);
         }
 
+        String tentantId = null;
+        if (authentication.getPrincipal() instanceof TenantUser)
+        {
+            tentantId = ((TenantUser) authentication.getPrincipal()).getTenantId();
+        }
+
         return Jwts.builder()
             .setSubject(authentication.getName())
             .claim(AUTHORITIES_KEY, authorities)
+            .claim(TENTANTID_KEY, tentantId)
             .signWith(SignatureAlgorithm.HS512, secretKey)
             .setExpiration(validity)
             .compact();
@@ -79,9 +88,12 @@ public class TokenProvider {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 
-        User principal = new User(claims.getSubject(), "", authorities);
+//        User principal = new User(claims.getSubject(), "", authorities);
 
-        return new UsernamePasswordAuthenticationToken(principal, token, authorities);
+        TenantUser tenantUser = new TenantUser(claims.getSubject(), "", authorities);
+        tenantUser.setTenantId(claims.get(TENTANTID_KEY).toString());
+
+        return new UsernamePasswordAuthenticationToken(tenantUser, token, authorities);
     }
 
     public boolean validateToken(String authToken) {

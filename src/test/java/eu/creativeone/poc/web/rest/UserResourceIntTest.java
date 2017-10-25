@@ -1,9 +1,9 @@
 package eu.creativeone.poc.web.rest;
 
 import eu.creativeone.poc.JhipsterApp;
-import eu.creativeone.poc.domain.Authority;
-import eu.creativeone.poc.domain.User;
-import eu.creativeone.poc.repository.UserRepository;
+import eu.creativeone.poc.tenancy.domain.Authority;
+import eu.creativeone.poc.tenancy.domain.User;
+import eu.creativeone.poc.tenancy.repository.UserRepository;
 import eu.creativeone.poc.security.AuthoritiesConstants;
 import eu.creativeone.poc.service.MailService;
 import eu.creativeone.poc.service.UserService;
@@ -28,7 +28,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.time.Instant;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

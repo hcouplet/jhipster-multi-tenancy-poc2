@@ -2,8 +2,8 @@ package eu.creativeone.poc.service.dto;
 
 import eu.creativeone.poc.config.Constants;
 
-import eu.creativeone.poc.domain.Authority;
-import eu.creativeone.poc.domain.User;
+import eu.creativeone.poc.tenancy.domain.Authority;
+import eu.creativeone.poc.tenancy.domain.User;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;

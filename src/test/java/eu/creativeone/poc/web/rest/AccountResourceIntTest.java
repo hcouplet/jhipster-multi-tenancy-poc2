@@ -1,10 +1,10 @@
 package eu.creativeone.poc.web.rest;
 import eu.creativeone.poc.config.Constants;
 import eu.creativeone.poc.JhipsterApp;
-import eu.creativeone.poc.domain.Authority;
-import eu.creativeone.poc.domain.User;
+import eu.creativeone.poc.tenancy.domain.Authority;
+import eu.creativeone.poc.tenancy.domain.User;
 import eu.creativeone.poc.repository.AuthorityRepository;
-import eu.creativeone.poc.repository.UserRepository;
+import eu.creativeone.poc.tenancy.repository.UserRepository;
 import eu.creativeone.poc.security.AuthoritiesConstants;
 import eu.creativeone.poc.service.MailService;
 import eu.creativeone.poc.service.dto.UserDTO;
@@ -30,7 +30,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;

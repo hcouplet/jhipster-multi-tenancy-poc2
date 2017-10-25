@@ -1,0 +1,10 @@
+// JDL definition for application 'jhipster' generated with command 'jhipster export-jdl'
+
+entity Author (Author) {
+  name String required,
+  mySize Integer required,
+  nextVal Boolean
+}
+
+
+paginate Author with pagination

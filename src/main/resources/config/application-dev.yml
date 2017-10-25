@@ -48,6 +48,9 @@ spring:
             hibernate.cache.hazelcast.instance_name: jhipster
             hibernate.cache.use_minimal_puts: true
             hibernate.cache.hazelcast.use_lite_member: true
+            hibernate.tenant_identifier_resolver : eu.creativeone.poc.tenancy.hibernate.MyCurrentTenantIdentifierResolver
+            hibernate.multi_tenant_connection_provider : eu.creativeone.poc.tenancy.hibernate.SchemaMultiTenantConnectionProviderImpl
+            hibernate.multiTenancy : SCHEMA
     mail:
         host: localhost
         port: 25
